@@ -1,0 +1,107 @@
+﻿@model IEnumerable<ProjectRSI.Domain.ActivoFijo>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+    @if (TempData["message"] != null)
+    {
+        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+            @TempData["message"]
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    }
+
+    <div class="row">
+        <div class="col-sm-12">
+            <h3>Buscar Activos Fijos</h3>
+            <form asp-action="Search" asp-controller="ActivoFijo" method="get">
+                <div class="row mb-2">
+                    <div class="col-md-6">
+                        <input type="text" class="form-control" name="codigoIdent" placeholder="Código Ident" />
+                    </div>
+                    <div class="col-md-6">
+                        <input type="text" class="form-control" name="marca" placeholder="Marca" />
+                    </div>
+                </div>
+                <div class="row mb-2">
+                    <div class="col-md-6">
+                        <input type="text" class="form-control" name="modelo" placeholder="Modelo" />
+                    </div>
+                    <div class="col-md-6">
+                        <input type="text" class="form-control" name="categoria" placeholder="Categoría" />
+                    </div>
+                </div>
+                <div class="form-row mb-2">
+                    <div class="col-md-12">
+                        <button type="submit" class="btn btn-primary">Buscar</button>
+                        <a asp-action="Index" asp-controller="ActivoFijo" class="btn btn-secondary">Limpiar</a>
+
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+   
+
+
+    <div class="row">
+        <div class="col-sm-6">
+            <h3>Lista Activos Fijos</h3>
+        </div>
+        <div class="col-sm-6">
+            <a class="btn btn-success d-block" asp-action="create" asp-controller="ActivoFijo">Agregar Activo</a>
+        </div>
+    </div>
+    <div class="row">
+        @if (Model.Count() > 0)
+        {
+            <table class="table table-bordered table-striped table-responsive">
+                <thead>
+                    <tr>
+                        <td>@Html.DisplayNameFor(x => x.IdActivo)</td>
+                        <td>Codigo Identificacion</td>
+                        <td>@Html.DisplayNameFor(x => x.Marca)</td>
+                        <td>@Html.DisplayNameFor(x => x.Modelo)</td>
+                        <td>Numero de Serie</td>
+                        <td>@Html.DisplayNameFor(x => x.Categoria)</td>
+                        <td>Valor Adquisicion</td>
+                        <td>Fecha Registro</td>
+                        <td colspan="2">Accion</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@item.IdActivo</td>
+                            <td>@item.CodigoIdent</td>
+                            <td>@item.Marca</td>
+                            <td>@item.Modelo</td>
+                            <td>@item.NumSerie</td>
+                            <td>@item.Categoria?.NombreCat</td>
+                            <td>@item.ValorAdqui</td>
+                            <td>@item.FechaRegistro</td>
+                            <td>
+                                <a asp-controller="ActivoFijo" asp-action="Edit" asp-route-id="@item.IdActivo" class="btn btn-warning">Editar</a>
+                            </td>
+                            <td>
+                                <a asp-controller="ActivoFijo" asp-action="Delete" asp-route-id="@item.IdActivo" class="btn btn-danger">Eliminar</a>
+                            </td>
+                        </tr>
+
+                    }
+                </tbody>
+            </table>
+
+        }
+        else
+        {
+            <p>Datos Vacios</p>
+        }
+    </div>
+</div>

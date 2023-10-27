@@ -1,0 +1,68 @@
+﻿@model ProjectRSI.Domain.ActivoFijo
+@{
+    ViewData["Title"] = "Editar Activo Fijo";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12">
+            <h3>Editar Activo Fijo</h3>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-10">
+            <form method="post" asp-action="EditActivoFijo">
+                <input type="hidden" asp-for="IdActivo" />
+
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="CodigoIdent" class="control-label"></label>
+                    <input asp-for="CodigoIdent" class="form-control" />
+                    <span asp-validation-for="CodigoIdent" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Marca" class="control-label"></label>
+                    <input asp-for="Marca" class="form-control" />
+                    <span asp-validation-for="Marca" class="text-danger"></span>
+
+                </div>
+                <div class="form-group">
+                    <label asp-for="Modelo" class="control-label"></label>
+                    <input asp-for="Modelo" class="form-control" />
+                    <span asp-validation-for="Modelo" class="text-danger"></span>
+
+                </div>
+                <div class="form-group">
+                    <label asp-for="NumSerie" class="control-label"></label>
+                    <input asp-for="NumSerie" class="form-control" />
+                    <span asp-validation-for="NumSerie" class="text-danger"></span>
+
+                </div>
+                <div class="form-group">
+                    <label asp-for="Categoria" class="control-label"></label>
+                    <select asp-for="IdCategoria" asp-items="ViewBag.ListaCategorias" class="form-control"></select>
+                    <span asp-validation-for="IdCategoria" class="text-danger"></span>
+                </div>
+                <div class="form-group mb-2">
+                    <label asp-for="ValorAdqui" class="control-label"></label>
+                    <input asp-for="ValorAdqui" class="form-control" />
+                    <span asp-validation-for="ValorAdqui" class="text-danger"></span>
+
+                </div>
+                <div class="form-group mb-2">
+                    <input type="submit" value="Editar" class="btn btn-primary" />
+                    <a asp-action="Index" asp-controller="ActivoFijo" class="btn btn-secondary">Cancelar</a>
+
+                </div>
+               
+            </form>
+        </div>
+    </div>
+</div>
+@section scripts{
+    @{
+        <partial name="_ValidationScriptsPartial" />
+    }
+}

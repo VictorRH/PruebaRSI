@@ -1,0 +1,74 @@
+﻿@model ProjectRSI.Domain.ActivoFijo
+@{
+    ViewData["Title"] = "Eliminar Activo Fijo";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12">
+            <h3>Eliminar Activo Fijo</h3>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-10">
+            <form method="post" asp-action="DeleteActivoFijo">
+                <input type="hidden" asp-for="IdActivo" />
+
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="CodigoIdent" class="control-label"></label>
+                    <input asp-for="CodigoIdent" class="form-control" disabled />
+                    <span asp-validation-for="CodigoIdent" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Marca" class="control-label"></label>
+                    <input asp-for="Marca" class="form-control" disabled />
+                    <span asp-validation-for="Marca" class="text-danger"></span>
+
+                </div>
+                <div class="form-group">
+                    <label asp-for="Modelo" class="control-label"></label>
+                    <input asp-for="Modelo" class="form-control" disabled />
+                    <span asp-validation-for="Modelo" class="text-danger"></span>
+
+                </div>
+                <div class="form-group">
+                    <label asp-for="NumSerie" class="control-label"></label>
+                    <input asp-for="NumSerie" class="form-control" disabled />
+                    <span asp-validation-for="NumSerie" class="text-danger"></span>
+
+                </div>
+                <div class="form-group">
+                    <label asp-for="Categoria.NombreCat" class="control-label">Categoria</label>
+                    <input asp-for="Categoria.NombreCat" class="form-control" disabled />
+                    <span asp-validation-for="Categoria.NombreCat" class="text-danger"></span>
+
+                </div>
+                <div class="form-group">
+                    <label asp-for="ValorAdqui" class="control-label"></label>
+                    <input asp-for="ValorAdqui" class="form-control" disabled />
+                    <span asp-validation-for="ValorAdqui" class="text-danger"></span>
+
+                </div>
+                <div class="form-group">
+                    <label asp-for="FechaRegistro" class="control-label"></label>
+                    <input asp-for="FechaRegistro" class="form-control" disabled />
+                    <span asp-validation-for="FechaRegistro" class="text-danger"></span>
+
+                </div>
+                <div class="form-group mb-2">
+                    <input type="submit" value="Delete" class="btn btn-danger" />
+                    <a asp-action="Index" asp-controller="ActivoFijo" class="btn btn-secondary">Cancelar</a>
+
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+@section scripts{
+    @{
+        <partial name="_ValidationScriptsPartial" />
+    }
+}
